@@ -1,3 +1,4 @@
+from tkinter.messagebox import RETRY
 from flask import Flask, render_template, redirect, request
 from user import User # importing the functions from class/model
 
@@ -28,12 +29,10 @@ def create_new_user():
     User.save(data) # we pass the data dictionary into the save data method from the class
     return redirect("/")
 
-
 # WILL SHOW THE SELECTED PERSONS INFORMATION
 @app.route("/show/<int:user_id>")
 def show(user_id):
     return render_template("show.html", this_user = User.get_one({"id": user_id}))
-
 
 # EDIT PAGE
 @app.route("/edit/<int:user_id>")
@@ -43,12 +42,18 @@ def edit(user_id):
 # EDIT PAGE REDIRECT
 @app.route("/edit/<int:user_id>/update", methods = ["POST"])
 def edit_user(user_id):
-    print(request.form)
     updated_data = {
         **request.form, 
         "id": user_id
     }
     User.update(updated_data)
+    return redirect("/")
+
+# DELETE USER
+@app.route("/destroy/<int:user_id>")
+def destroy(user_id):
+    data = {"id": user_id}
+    User.destroy(data)
     return redirect("/")
 
 # IF RUN PROGRAM

@@ -42,6 +42,6 @@ class User:
 
 # DELETE
     @classmethod
-    def delete(cls, data):
+    def destroy(cls, data):
         query = "DELETE FROM users WHERE id = %(id)s;"
-        connectToMySQL("new_users").query_db(query, data)
+        return connectToMySQL("new_users").query_db(query, data)
