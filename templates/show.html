@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <title>Showing Dog Information</title>
+</head>
+<body>
+    <h1>User {{ this_user.id }}</h1>
+    <div>
+        <p>Full Name: {{ this_user.first_name }} {{ this_user.last_name }}</p>
+    </div>
+    <div>
+        <p>Email : {{ this_user.email }}</p>
+    </div>
+    <div>
+        <p>Created On: {{ this_user.created_at }}</p>
+    </div>
+    <div>
+        <p>Last Updated: {{ this_user.updated_at }}</p>
+    </div>
+    <div>
+        <a href="/">Home</a>
+        <a href="/edit/{{ this_user.id }}">Edit</a>
+    </div>
+</body>
+</html>
