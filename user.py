@@ -11,7 +11,7 @@ class User:
         self.created_at = data["created_at"]
         self.updated_at = data["updated_at"]
 
-# CREATE
+# GET
     @classmethod
     def get_all(cls): # function to receive data from database
         query = "SELECT * FROM users;"   # this is an id but it is also the database statement
@@ -21,7 +21,7 @@ class User:
             users.append(cls(user))
         return users # returns the populated list
 
-# READ ALL
+# CREATE
     @classmethod
     def save(cls, data):
         query = "INSERT INTO users (first_name, last_name, email, created_at, updated_at) VALUES (%(fname)s, %(lname)s, %(nemail)s, NOW(), NOW());"
@@ -33,3 +33,15 @@ class User:
         query = "SELECT * FROM users WHERE id = %(id)s;"
         results = connectToMySQL("new_users").query_db(query, data)
         return cls(results[0])
+
+# UPDATE
+    @classmethod
+    def update(cls, data):
+        query = "UPDATE users SET first_name = %(fiame)s, last_name = %(laame)s, email= %(neemail)s, updated_at = NOW() WHERE id = %(id)s;"
+        return connectToMySQL("new_users").query_db(query, data)
+
+# DELETE
+    @classmethod
+    def delete(cls, data):
+        query = "DELETE FROM users WHERE id = %(id)s;"
+        connectToMySQL("new_users").query_db(query, data)

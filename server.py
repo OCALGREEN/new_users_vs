@@ -43,15 +43,12 @@ def edit(user_id):
 # EDIT PAGE REDIRECT
 @app.route("/edit/<int:user_id>/update", methods = ["POST"])
 def edit_user(user_id):
-    updated_data = {**request.form, "id": user_id}
+    updated_data = {
+        **request.form, 
+        "id": user_id
+    }
     User.update(updated_data)
     return redirect("/")
-
-
-
-
-
-
 
 # IF RUN PROGRAM
 if __name__ == "__main__":
