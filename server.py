@@ -43,6 +43,7 @@ def edit(user_id):
 # EDIT PAGE REDIRECT
 @app.route("/edit/<int:user_id>/update", methods = ["POST"])
 def edit_user(user_id):
+    print(request.form)
     updated_data = {
         **request.form, 
         "id": user_id
